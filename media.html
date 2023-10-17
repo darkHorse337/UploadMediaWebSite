@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="main.css"> 
+   </head>
+    <body>
+    <header>
+        <h1>Upload4U</h1>
+        <h2> You Can Upload Your .jpg, .mp4, .png Files Here</h2>
+    </header>
+    <main>
+        <form action="upload.php" method="post"id="pic/vidForm" enctype="multipart/form-data">
+            <label for="capture"></label>
+            <input type="file"
+                id="capture"
+                accept="image/*,video/*,audio/*"
+                capture   
+                multiple
+                name="fileToUpload"
+            />
+                
+            <input type ="submit" value="Upload" name="submit" />
+        </form>
+        <p> Insert Photo</p>
+        <p><img src="" id="img"/></p>
+        <p><audio src="" id="audio" controls ></audio></p>
+        <p><video src="" id="video" controls ></video></p>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', (e)=>{
+            let form = document.getElementById('pic/vidForm');
+            let input = document.getElementById('capture');
+            
+            input.addEventListener('change', (e)=>{
+                console.dir(input.files[0]);
+                if(input.files[0]. type.indexOf("image/")> -1){  // indexOf pulls image string out from type from console 
+                    let img= document.getElementById('img');
+                    img.src = URL.createObjectURL(input.files[0]);
+                }
+                else if(input.files[0].type.indexOf("audio/")> -1){  // indexOf pulls audio string out from type from console 
+                    let audio= document.getElementById('audio');
+                    audio.src = URL.createObjectURL(input.files[0]);
+                }
+                else if(input.files[0]. type.indexOf("video/")> -1){ // indexOf pulls video string out from type from console 
+                    let video= document.getElementById('video');
+                    video.src= URL.createObjectURL(input.files[0]);
+                }
+            })
+        })
+    </script>
+
+</body>      
+</html>
